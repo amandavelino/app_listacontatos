@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR" ng-app="appLc">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App :: Lista Contatos</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,00,500">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="listaContatos" ng-controller="MainCtrl as mCtrl">
+
+            <!-- <h4>Lista de Contatos</h4> -->
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><input type="text" class="form-control" ng-model="mCtrl.contato.nome"></td>
+                        <td><input type="text" class="form-control" ng-model="mCtrl.contato.email"></td>
+                        <td><input type="text" class="form-control" ng-model="mCtrl.contato.fone"></td>
+                        <td>
+                            <button type="button" class="btn btn-success" ng-click="mCtrl.salvarContato(mCtrl.contato)">
+                                <i class="fas fa-save"></i> <span>Salvar</span> 
+                            </button>
+                            <button type="button" class="btn btn-warning" ng-click="mCtrl.limparContato()">
+                                <i class="fas fa-times"></i> <span>Limpar</span> 
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr ng-repeat="c in mCtrl.lista">
+                        <td ng-bind="c.nome"></td>
+                        <td ng-bind="c.email"></td>
+                        <td ng-bind="c.fone"></td>
+                        <td>
+                            <button type="button" class="btn btn-primary" ng-click="mCtrl.editarContato(c._id)">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" ng-click="mCtrl.deletarContato(c._id)">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+        <!-- listaContatos -->
+
+    </div>
+    <!-- container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="/js/controllers/mainCtrl.js"></script>
+</body>
+</html>
